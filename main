@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IB Rescue — Your 4-Week Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f5f0e8;
+  --cream2: #ede7d9;
+  --parchment: #e8dfc8;
+  --dark: #1a1f4e;
+  --brown: #1e2558;
+  --olive: #4a4a2a;
+  --olive2: #5c5c35;
+  --rust: #b5451b;
+  --rust2: #d4562a;
+  --gold: #c8962a;
+  --gold2: #e8b840;
+  --sage: #6b7c5a;
+  --sage2: #8a9e72;
+  --muted: #7a6e5a;
+  --border: rgba(26,31,78,0.15);
+  --border2: rgba(26,31,78,0.25);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--brown);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* TEXTURE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--dark);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 48px;
+  padding: 0 32px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+nav::-webkit-scrollbar { display: none; }
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 17px;
+  color: var(--gold2);
+  letter-spacing: .02em;
+  white-space: nowrap;
+  margin-right: 24px;
+  flex-shrink: 0;
+}
+
+.nav-link {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.55);
+  text-decoration: none;
+  padding: 0 14px;
+  white-space: nowrap;
+  transition: color .2s;
+  border-left: 1px solid rgba(255,255,255,0.08);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.nav-link:hover, .nav-link.active { color: var(--gold2); }
+
+/* HERO */
+.hero {
+  background: var(--dark);
+  min-height: 92vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.hero-top-bar {
+  background: var(--rust);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cream);
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.hero-top-bar::before, .hero-top-bar::after {
+  content: '✦';
+  opacity: 0.6;
+}
+
+.hero-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px 40px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Big display title */
+.hero-wordmark {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(52px, 10vw, 110px);
+  line-height: 0.92;
+  letter-spacing: -.02em;
+  color: var(--cream);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  animation: fadeUp .8s ease both;
+}
+.hero-wordmark em {
+  font-style: italic;
+  color: var(--gold2);
+  display: block;
+}
+
+.hero-sub {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(245,240,232,0.65);
+  max-width: 480px;
+  line-height: 1.55;
+  margin-bottom: 36px;
+  animation: fadeUp .8s .15s ease both;
+}
+
+.hero-stats-row {
+  display: flex;
+  gap: 0;
+  border: 1px solid rgba(245,240,232,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+  animation: fadeUp .8s .25s ease both;
+}
+.hero-stat {
+  padding: 16px 28px;
+  border-right: 1px solid rgba(245,240,232,0.12);
+  text-align: center;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--gold2);
+  display: block;
+}
+.hero-stat-label {
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.4);
+  margin-top: 2px;
+}
+
+/* decorative rule */
+.stitch-border {
+  width: 100%;
+  height: 18px;
+  background: var(--rust);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.stitch-border::after {
+  content: '❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧ ❧';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: rgba(245,240,232,0.5);
+  white-space: nowrap;
+  letter-spacing: 4px;
+}
+
+/* SUBJECTS STRIP */
+.subjects-intro {
+  background: var(--cream2);
+  padding: 72px 40px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.overline {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 16px;
+  display: block;
+}
+.display-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1.0;
+  color: var(--dark);
+  letter-spacing: -.02em;
+  margin-bottom: 20px;
+}
+.display-heading em {
+  font-style: italic;
+  color: var(--rust);
+}
+.body-serif {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+.subj-cards {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.subj-card {
+  background: var(--dark);
+  color: var(--cream);
+  border-radius: 3px;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: .01em;
+}
+.subj-dot { width: 7px; height: 7px; border-radius: 50%; }
+.subj-arrow {
+  font-size: 11px;
+  color: var(--gold2);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+/* MAIN LAYOUT */
+.page-wrap { max-width: 1000px; margin: 0 auto; padding: 0 32px; }
+
+/* SECTION HEADERS */
+.section-wrap { padding: 80px 0; }
+.section-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--dark);
+}
+@media (max-width: 640px) { .section-header { grid-template-columns: 1fr; } }
+.section-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--parchment);
+  margin-bottom: -8px;
+}
+.section-title-lg {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--dark);
+}
+.section-title-lg em { font-style: italic; color: var(--rust); }
+.section-note {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 360px;
+}
+
+/* WEEK TABS */
+.week-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 32px;
+  border: 1.5px solid var(--dark);
+  border-radius: 2px;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+.wtab {
+  flex: 1;
+  min-width: 80px;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  border-right: 1px solid var(--border2);
+  transition: all .2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.wtab:last-child { border-right: none; }
+.wtab:hover { background: var(--parchment); color: var(--dark); }
+.wtab.on { background: var(--dark); color: var(--gold2); }
+
+.week-panel { display: none; }
+.week-panel.on { display: block; }
+
+/* WEEK TIP BANNER */
+.week-banner {
+  background: var(--olive);
+  color: var(--cream);
+  padding: 18px 22px;
+  border-radius: 3px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.week-banner-icon {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 28px;
+  color: var(--gold2);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.week-banner strong { color: var(--gold2); }
+
+/* DAY GRID */
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.day-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .15s, box-shadow .15s;
+}
+.day-card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(45,37,24,0.1); }
+.day-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent-color, var(--muted));
+}
+.day-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--accent-color, var(--muted));
+  margin-bottom: 4px;
+}
+.day-subj {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.day-task {
+  font-size: 13px;
+  color: var(--brown);
+  line-height: 1.55;
+}
+
+/* SUBJECT BLOCKS */
+.subject-block {
+  margin-bottom: 56px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: white;
+}
+.subj-block-header {
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .15s;
+}
+.subj-block-header:hover { background: var(--cream2); }
+.subj-color-stripe {
+  width: 5px;
+  height: 44px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.subj-block-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -.01em;
+  color: var(--dark);
+}
+.subj-block-meta {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.badge-row { display: flex; gap: 6px; margin-left: auto; }
+.badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 2px;
+}
+.badge-hl { background: rgba(181,69,27,0.12); color: var(--rust); border: 1px solid rgba(181,69,27,0.25); }
+.badge-sl { background: rgba(107,124,90,0.12); color: var(--sage); border: 1px solid rgba(107,124,90,0.25); }
+.badge-p1 { background: rgba(200,150,42,0.15); color: var(--gold); border: 1px solid rgba(200,150,42,0.3); }
+
+.subj-block-body { padding: 24px 28px; }
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 10px;
+}
+.topic-tile {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 14px 16px;
+}
+.priority-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.p-must { color: var(--rust); }
+.p-high { color: var(--gold); }
+.p-low { color: var(--muted); }
+.topic-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+.topic-note { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* ESSAY SECTION */
+.essay-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 640px) { .essay-grid { grid-template-columns: 1fr; } }
+.essay-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.essay-card-head {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.essay-accent { width: 4px; height: 28px; border-radius: 2px; flex-shrink: 0; }
+.essay-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--dark);
+}
+.essay-body { padding: 18px 20px; }
+.formula-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.formula-step:last-child { border-bottom: none; }
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 14px;
+  width: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.step-body { color: var(--brown); line-height: 1.45; }
+.step-body strong { color: var(--dark); }
+
+/* CHEAT SHEET — FULL WIDTH DARK */
+.cheat-section {
+  background: var(--dark);
+  color: var(--cream);
+  padding: 80px 0;
+}
+.cheat-section .overline { color: var(--gold2); }
+.cheat-section .display-heading { color: var(--cream); }
+.cheat-section .body-serif { color: rgba(245,240,232,0.55); }
+
+.cheat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 640px) { .cheat-grid { grid-template-columns: 1fr; } }
+.full-col { grid-column: 1 / -1; }
+
+.cheat-card {
+  background: rgba(245,240,232,0.05);
+  border: 1px solid rgba(245,240,232,0.1);
+  border-radius: 4px;
+  padding: 20px 22px;
+}
+.cheat-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(245,240,232,0.1);
+}
+.cheat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.cheat-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--cream);
+}
+.cheat-row {
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(245,240,232,0.07);
+  font-size: 13px;
+}
+.cheat-row:last-child { border-bottom: none; }
+.cheat-term {
+  font-weight: 500;
+  color: var(--gold2);
+  margin-bottom: 2px;
+  font-size: 13px;
+}
+.cheat-def { color: rgba(245,240,232,0.6); font-size: 12px; line-height: 1.45; }
+
+/* FRENCH */
+.fr-section { background: var(--cream2); padding: 80px 0; }
+.fr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+}
+.fr-tile {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 15px 17px;
+  border-top: 3px solid;
+  transition: transform .15s;
+}
+.fr-tile:hover { transform: translateY(-2px); }
+.fr-cat { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 7px; }
+.fr-phrase {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--dark);
+  margin-bottom: 2px;
+}
+.fr-meaning { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.fr-example {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--brown);
+  line-height: 1.5;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+
+/* FORMAT CARDS */
+.format-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 32px;
+}
+.format-card {
+  background: var(--dark);
+  color: var(--cream);
+  border-radius: 3px;
+  padding: 18px 20px;
+}
+.format-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--gold2);
+  margin-bottom: 10px;
+}
+.format-steps { font-size: 12px; color: rgba(245,240,232,0.6); line-height: 1.7; }
+.format-steps span { color: rgba(245,240,232,0.9); font-weight: 500; display: block; }
+
+/* EXAM TIPS */
+.tips-section { padding: 80px 0; }
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.tip-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+}
+.tip-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--rust);
+}
+.tip-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 42px;
+  line-height: 1;
+  color: var(--parchment);
+  margin-bottom: 4px;
+}
+.tip-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+.tip-body { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  color: rgba(245,240,232,0.35);
+  text-align: center;
+  padding: 40px 32px;
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 14px;
+  border-top: 3px solid var(--rust);
+}
+footer strong { color: var(--gold2); font-style: normal; }
+
+/* DIVIDER */
+.ornamental-divider {
+  text-align: center;
+  padding: 0;
+  color: var(--muted);
+  font-size: 20px;
+  letter-spacing: 12px;
+  line-height: 1;
+  margin: 0 auto;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in { animation: fadeUp .6s ease both; }
+
+/* CALLOUT BOX */
+.callout {
+  background: var(--parchment);
+  border: 1.5px solid var(--border2);
+  border-radius: 3px;
+  padding: 18px 22px;
+  margin-top: 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--brown);
+  line-height: 1.65;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.callout-mark {
+  font-size: 22px;
+  color: var(--rust);
+  line-height: 1.1;
+  flex-shrink: 0;
+}
+.callout strong { font-style: normal; color: var(--dark); }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--cream2); }
+::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 3px; }
+
+@media (max-width: 600px) {
+  .hero-stats-row { flex-wrap: wrap; }
+  .hero-stat { flex: 1; min-width: 100px; }
+  .page-wrap { padding: 0 18px; }
+  nav { padding: 0 18px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">IB Rescue</div>
+  <a class="nav-link active" href="#plan">The Plan</a>
+  <a class="nav-link" href="#subjects">Subjects</a>
+  <a class="nav-link" href="#essays">Essays</a>
+  <a class="nav-link" href="#cheatsheet">Cheat Sheet</a>
+  <a class="nav-link" href="#french">French B</a>
+  <a class="nav-link" href="#tips">Exam Tips</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top-bar">4 weeks · 5 subjects · 1–2 hrs a day · you've genuinely got this</div>
+
+  <div class="hero-main">
+    <div class="hero-wordmark">
+      Your IB
+      <em>Rescue Plan.</em>
+    </div>
+    <p class="hero-sub">You're not failing because you're bad at this. You're overwhelmed and behind on strategy. This fixes that — subject by subject, day by day.</p>
+    <div class="hero-stats-row">
+      <div class="hero-stat">
+        <span class="hero-stat-num">4</span>
+        <div class="hero-stat-label">Weeks left</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">5</span>
+        <div class="hero-stat-label">Subjects</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">80/20</span>
+        <div class="hero-stat-label">Rule applied</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">1–2h</span>
+        <div class="hero-stat-label">Per day</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stitch-border"></div>
+</div>
+
+<!-- SUBJECTS INTRO -->
+<div class="subjects-intro">
+  <span class="overline">Your subjects</span>
+  <div class="display-heading">Where you are.<br><em>Where you're going.</em></div>
+  <p class="body-serif">One subject per session. No multitasking. Every session uses a past paper question — not just notes. Priority order: Business → Econ → English → French → ESS.</p>
+  <div class="subj-cards">
+    <div class="subj-card"><div class="subj-dot" style="background:#c8962a"></div>Business Management HL<span class="subj-arrow">5 → 6</span></div>
+    <div class="subj-card"><div class="subj-dot" style="background:#6b7c5a"></div>Economics HL<span class="subj-arrow">? → 6</span></div>
+    <div class="subj-card"><div class="subj-dot" style="background:#8a6fbc"></div>English Lang Lit A HL<span class="subj-arrow">5 → 6</span></div>
+    <div class="subj-card"><div class="subj-dot" style="background:#4a9cc4"></div>ESS SL<span class="subj-arrow">hold 6</span></div>
+    <div class="subj-card"><div class="subj-dot" style="background:#b5451b"></div>French B SL<span class="subj-arrow">4 → 5</span></div>
+  </div>
+</div>
+
+<div class="ornamental-divider">✦ ✦ ✦</div>
+
+<!-- WEEK PLAN -->
+<section id="plan">
+<div class="page-wrap">
+<div class="section-wrap">
+
+  <div class="section-header">
+    <div>
+      <div class="section-num">01</div>
+      <div class="section-title-lg">The 4-Week<br><em>Daily Plan</em></div>
+    </div>
+    <div class="section-note">
+      One subject per session. The rule is always: attempt → mark scheme → find the gap → fix that specific gap. Never revise blindly.
+    </div>
+  </div>
+
+  <div class="week-tabs">
+    <button class="wtab on" onclick="showWeek(1)">Week 1</button>
+    <button class="wtab" onclick="showWeek(2)">Week 2</button>
+    <button class="wtab" onclick="showWeek(3)">Week 3</button>
+    <button class="wtab" onclick="showWeek(4)">Week 4</button>
+  </div>
+
+  <!-- W1 -->
+  <div class="week-panel on" id="w1">
+    <div class="week-banner">
+      <div class="week-banner-icon">I.</div>
+      <div><strong>Diagnose, don't panic.</strong> Do one past paper question per subject to find exactly where marks are leaking. Don't revise blindly — every session ends by identifying one specific thing to fix next time.</div>
+    </div>
+    <div class="day-grid">
+      <div class="day-card" style="--accent-color:#c8962a">
+        <div class="day-name">Monday</div>
+        <div class="day-subj">Business HL</div>
+        <div class="day-task">Attempt 1 past paper question (Paper 2, structured). Mark using mark scheme. Write down exactly what you missed and why — content gap, application gap, or no evaluation?</div>
+      </div>
+      <div class="day-card" style="--accent-color:#6b7c5a">
+        <div class="day-name">Tuesday</div>
+        <div class="day-subj">Economics HL</div>
+        <div class="day-task">Redraw all core diagrams from memory: AD/AS, supply & demand shifts, PPC, market failure externalities. Label every axis, curve and equilibrium. Check against notes.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#8a6fbc">
+        <div class="day-name">Wednesday</div>
+        <div class="day-subj">English HL</div>
+        <div class="day-task">Annotate 1 unseen text cold. Then write just the introduction paragraph using the formula: text type → purpose → intended audience → dominant tone.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#c8962a">
+        <div class="day-name">Thursday</div>
+        <div class="day-subj">Business HL</div>
+        <div class="day-task">Revise Finance & Accounts: ratio analysis (gross/net profit margin, current ratio, acid test), break-even analysis, cash flow forecasting. Write all formulas from memory.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#6b7c5a">
+        <div class="day-name">Friday</div>
+        <div class="day-subj">Economics HL</div>
+        <div class="day-task">Attempt 1 Paper 1 part-a question under timed conditions. Compare line by line with the mark scheme. Note every missing evaluation phrase — these are your quick wins.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#b5451b">
+        <div class="day-name">Saturday</div>
+        <div class="day-subj">French B SL</div>
+        <div class="day-task">Memorise 3 text type formats: formal letter (date, salutation, formal sign-off), article (headline, byline, subheading), blog post (informal register, direct address).</div>
+      </div>
+      <div class="day-card" style="--accent-color:#4a9cc4">
+        <div class="day-name">Sunday</div>
+        <div class="day-subj">ESS SL</div>
+        <div class="day-task">Skim key case studies. Write 10 definitions from memory. Then genuinely rest — sleep is consolidation. This is part of the plan.</div>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="callout-mark">✦</div>
+      <div><strong>Econ note:</strong> Your IGCSE knowledge is still in your head — you just need to activate IB-depth evaluation language. The content isn't new, the presentation is. Don't let it feel embarrassing. It's a gift.</div>
+    </div>
+  </div>
+
+  <!-- W2 -->
+  <div class="week-panel" id="w2">
+    <div class="week-banner">
+      <div class="week-banner-icon">II.</div>
+      <div><strong>Core content blitz.</strong> One subject per day, deep. No multi-subject days. Build your essay templates this week — they're reusable across every question.</div>
+    </div>
+    <div class="day-grid">
+      <div class="day-card" style="--accent-color:#c8962a">
+        <div class="day-name">Monday</div>
+        <div class="day-subj">Business HL</div>
+        <div class="day-task">Marketing (4Ps, product life cycle, Boston Matrix, market research) + HR motivation theories: Maslow, Herzberg, Taylor. Write a comparison table for all three.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#6b7c5a">
+        <div class="day-name">Tuesday</div>
+        <div class="day-subj">Economics HL</div>
+        <div class="day-task">AD/AS diagrams for all scenarios: demand-pull inflation, cost-push, deflationary gap. Practice writing fiscal vs monetary policy essays with the "extent to which... depends on" conclusion.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#8a6fbc">
+        <div class="day-name">Wednesday</div>
+        <div class="day-subj">English HL</div>
+        <div class="day-task">Write 1 full timed Paper 1 response (45 min). Read 1 model answer. Identify every literary term they used that you missed — these are the terms to prioritise.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#c8962a">
+        <div class="day-name">Thursday</div>
+        <div class="day-subj">Business HL</div>
+        <div class="day-task">Operations management: lean production, just-in-time, quality control vs quality assurance, capacity utilisation. Write 1 short answer applying each concept to a real business.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#6b7c5a">
+        <div class="day-name">Friday</div>
+        <div class="day-subj">Economics HL</div>
+        <div class="day-task">Market failure: negative externalities (draw + label welfare loss triangle), positive externalities, public goods (non-rival, non-excludable), information asymmetry. Draw each diagram.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#b5451b">
+        <div class="day-name">Saturday</div>
+        <div class="day-subj">French B SL</div>
+        <div class="day-task">Write 2 timed responses (20 min each, no dictionary) using your text type templates. Focus on maintaining register throughout and placing connectives between each paragraph.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#4a9cc4">
+        <div class="day-name">Sunday</div>
+        <div class="day-subj">ESS SL</div>
+        <div class="day-task">Past paper SRQ section. Focus on systems thinking definitions and biodiversity loss case studies. Light session — 45 min max.</div>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="callout-mark">✦</div>
+      <div><strong>English focus:</strong> High 5 to 6 is a craft fix, not a knowledge fix. Your bottleneck is essay structure, not literary knowledge. The model answer exercise on Wednesday is the single most important thing you'll do this week.</div>
+    </div>
+  </div>
+
+  <!-- W3 -->
+  <div class="week-panel" id="w3">
+    <div class="week-banner">
+      <div class="week-banner-icon">III.</div>
+      <div><strong>Past papers only.</strong> Every session: attempt under timed conditions → mark scheme → identify the gap → fix that specific gap. No passive note reading. Zero.</div>
+    </div>
+    <div class="day-grid">
+      <div class="day-card" style="--accent-color:#c8962a">
+        <div class="day-name">Monday</div>
+        <div class="day-subj">Business HL</div>
+        <div class="day-task">Full timed Paper 2 attempt. Mark against mark scheme. Highlight every lost mark and categorise: content gap? application gap? no evaluation? This tells you exactly what to fix.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#6b7c5a">
+        <div class="day-name">Tuesday</div>
+        <div class="day-subj">Economics HL</div>
+        <div class="day-task">Paper 1 full essay (parts a + b). Use the formula: define → diagram → theory → counter-argument → "the extent to which... depends on..." Mark your own answer against the rubric.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#8a6fbc">
+        <div class="day-name">Wednesday</div>
+        <div class="day-subj">English HL</div>
+        <div class="day-task">Paper 1 under strict timed conditions. Refine your annotation method: read guiding question first, annotate purposefully for 10 minutes, then write without re-reading.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#c8962a">
+        <div class="day-name">Thursday</div>
+        <div class="day-subj">Business HL</div>
+        <div class="day-task">Review Monday's specific weak areas only. Rewrite your worst answer using mark scheme language. This is high-value — don't skip or abbreviate it.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#6b7c5a">
+        <div class="day-name">Friday</div>
+        <div class="day-subj">Economics HL</div>
+        <div class="day-task">Paper 3 (HL only): data response and calculations. Practice elasticity calculations, the multiplier, Keynesian model. Show every step of working — method marks are real.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#b5451b">
+        <div class="day-name">Saturday</div>
+        <div class="day-subj">French B SL</div>
+        <div class="day-task">Full timed written response (Paper 2). Then 30 min vocabulary: 10 words each for l'environnement, la technologie, la santé. These IB themes recur every year.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#4a9cc4">
+        <div class="day-name">Sunday</div>
+        <div class="day-subj">ESS SL</div>
+        <div class="day-task">Light review of climate change, pollution, and sustainability. 45 min max. Then rest properly — your brain consolidates during sleep, not during late-night cramming.</div>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="callout-mark">✦</div>
+      <div><strong>French tip:</strong> Saturday's vocab — focus hard on IB's core themes: l'environnement, la technologie, la mondialisation, la santé, les médias sociaux. These exact themes appear in almost every exam session.</div>
+    </div>
+  </div>
+
+  <!-- W4 -->
+  <div class="week-panel" id="w4">
+    <div class="week-banner">
+      <div class="week-banner-icon">IV.</div>
+      <div><strong>No new content.</strong> Tighten what you know. Fix your worst answers. Sleep properly. Panicked students cram new material in week 4 — don't be one of them. Consolidation beats cramming every time.</div>
+    </div>
+    <div class="day-grid">
+      <div class="day-card" style="--accent-color:#c8962a">
+        <div class="day-name">Monday</div>
+        <div class="day-subj">Business HL</div>
+        <div class="day-task">Rewrite your single worst past paper answer from Week 3 using the correct structure and mark scheme language. Then write 10 key definitions from memory without looking.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#6b7c5a">
+        <div class="day-name">Tuesday</div>
+        <div class="day-subj">Economics HL</div>
+        <div class="day-task">Draw all core diagrams from memory under timed conditions — 20 seconds per diagram. Any hesitation identifies what to revise today. Speed and accuracy are both needed.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#8a6fbc">
+        <div class="day-name">Wednesday</div>
+        <div class="day-subj">English HL</div>
+        <div class="day-task">Final Paper 1 practice. Read 1 model answer. Focus specifically on how they open the response and how they connect technique to effect — mirror that structure exactly.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#c8962a">
+        <div class="day-name">Thursday</div>
+        <div class="day-subj">Business + Econ</div>
+        <div class="day-task">Split: 30 min Business key terms review (say them aloud — forces active recall), 30 min Econ evaluation phrases. Saying things aloud is dramatically more effective than reading.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#b5451b">
+        <div class="day-name">Friday</div>
+        <div class="day-subj">French B SL</div>
+        <div class="day-task">Re-read your 2 best past written responses. Identify your most common grammar error. Fix it in one short focused writing practice. No dictionary.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#4a9cc4">
+        <div class="day-name">Saturday</div>
+        <div class="day-subj">ESS SL</div>
+        <div class="day-task">Final case study scan. No new content — only consolidate. Write the 5 definitions you always forget, from memory, three times over.</div>
+      </div>
+      <div class="day-card" style="--accent-color:#5a595f">
+        <div class="day-name">Sunday</div>
+        <div class="day-subj">Rest Day</div>
+        <div class="day-task">No studying. Your brain processes and stores memory during sleep — rest is not laziness, it's consolidation. What you learned this week will be stronger after a full night's sleep.</div>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="callout-mark">✦</div>
+      <div><strong>Final week rule:</strong> If you're tempted to start a new topic you haven't covered — don't. A shaky half-revision creates exam anxiety and wastes time better spent on sure marks you already know.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+</section>
+
+<div class="ornamental-divider">✦ ✦ ✦</div>
+
+<!-- SUBJECTS -->
+<section id="subjects">
+<div class="page-wrap">
+<div class="section-wrap">
+
+  <div class="section-header">
+    <div>
+      <div class="section-num">02</div>
+      <div class="section-title-lg">High-Value<br><em>Topics</em></div>
+    </div>
+    <div class="section-note">The topics most likely to appear and worth the most marks per hour of revision. Colour-coded by priority.</div>
+  </div>
+
+  <!-- BUSINESS -->
+  <div class="subject-block">
+    <div class="subj-block-header">
+      <div class="subj-color-stripe" style="background:#c8962a"></div>
+      <div>
+        <div class="subj-block-title">Business Management</div>
+        <div class="subj-block-meta">Currently a 5 — highest ROI subject, one push gets you to a 6</div>
+      </div>
+      <div class="badge-row"><span class="badge badge-hl">HL</span><span class="badge badge-p1">Priority 1</span></div>
+    </div>
+    <div class="subj-block-body">
+      <div class="topics-grid">
+        <div class="topic-tile">
+          <div class="priority-label p-must">Must Know</div>
+          <div class="topic-name">Finance & Accounts</div>
+          <div class="topic-note">Ratio analysis (gross/net profit margin, current ratio, acid test), break-even, cash flow forecasting. Appears every year without exception.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-must">Must Know</div>
+          <div class="topic-name">Marketing — 4Ps & beyond</div>
+          <div class="topic-note">Product life cycle, Boston Matrix, market research (primary/secondary), segmentation, targeting, positioning. Always apply to a specific business context.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-must">Must Know</div>
+          <div class="topic-name">HR — Motivation Theories</div>
+          <div class="topic-note">Maslow (hierarchy of needs), Herzberg (motivators vs hygiene), Taylor (scientific management). Compare and evaluate in context — don't just describe.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-high">High Value</div>
+          <div class="topic-name">Operations Management</div>
+          <div class="topic-note">Lean production, just-in-time, quality control vs assurance, capacity utilisation, productivity. Link to cost reduction in evaluation.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-high">High Value</div>
+          <div class="topic-name">Ansoff Matrix</div>
+          <div class="topic-note">4 strategies: market penetration, market development, product development, diversification. Know which carries most risk and evaluate trade-offs.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-high">High Value</div>
+          <div class="topic-name">Organisational Structure</div>
+          <div class="topic-note">Flat vs hierarchical, span of control, delegation, centralisation vs decentralisation. Easy marks in short-answer questions.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-low">Know Basics</div>
+          <div class="topic-name">HL: Investment Appraisal</div>
+          <div class="topic-note">Payback period, ARR, NPV. If you can do the calculations correctly, these are guaranteed marks in Paper 2.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-low">Know Basics</div>
+          <div class="topic-name">HL: Porter's Strategies</div>
+          <div class="topic-note">Cost leadership, differentiation, focus. Evaluate which strategy suits the specific business context — don't just name them.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ECON -->
+  <div class="subject-block">
+    <div class="subj-block-header">
+      <div class="subj-color-stripe" style="background:#6b7c5a"></div>
+      <div>
+        <div class="subj-block-title">Economics</div>
+        <div class="subj-block-meta">IGCSE knowledge still in your head — activate IB-depth evaluation language</div>
+      </div>
+      <div class="badge-row"><span class="badge badge-hl">HL</span><span class="badge badge-p1">Priority 2</span></div>
+    </div>
+    <div class="subj-block-body">
+      <div class="topics-grid">
+        <div class="topic-tile">
+          <div class="priority-label p-must">Must Know</div>
+          <div class="topic-name">Supply & Demand Diagrams</div>
+          <div class="topic-note">Every answer needs a diagram. Shifts vs movements. Price controls (floor/ceiling). Draw it even for short 4-mark questions.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-must">Must Know</div>
+          <div class="topic-name">Market Failure</div>
+          <div class="topic-note">Positive & negative externalities (always draw the welfare loss triangle), public goods (non-excludable, non-rival), merit/demerit goods, information asymmetry.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-must">Must Know</div>
+          <div class="topic-name">AD/AS Model</div>
+          <div class="topic-note">Demand-pull vs cost-push inflation, Keynesian vs monetarist views, deflationary vs inflationary gap. Link to policy responses every time.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-must">Must Know</div>
+          <div class="topic-name">Macroeconomic Policies</div>
+          <div class="topic-note">Fiscal (G and T), monetary (interest rates), supply-side. Know the trade-offs: e.g. fiscal stimulus → inflation risk → policy conflict.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-high">High Value</div>
+          <div class="topic-name">Elasticities (HL)</div>
+          <div class="topic-note">PED, YED, XED, PES — formulas, interpretation, policy application. Paper 3 will test calculations. Show every step of working.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-high">High Value</div>
+          <div class="topic-name">International Trade</div>
+          <div class="topic-note">Comparative advantage, terms of trade, protectionism tools. Draw the tariff diagram showing consumer/producer surplus changes and deadweight loss.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-high">High Value</div>
+          <div class="topic-name">Macroeconomic Objectives</div>
+          <div class="topic-note">Growth, inflation, unemployment, BoP — know the conflicts (e.g. growth vs inflation). Part b essays are built on these policy conflicts.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-low">Know Basics</div>
+          <div class="topic-name">HL: Theory of the Firm</div>
+          <div class="topic-note">Perfect competition vs monopoly diagrams. Profit maximisation at MR=MC. Supernormal profit, normal profit, loss — draw all three.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENGLISH -->
+  <div class="subject-block">
+    <div class="subj-block-header">
+      <div class="subj-color-stripe" style="background:#8a6fbc"></div>
+      <div>
+        <div class="subj-block-title">English Language & Literature A</div>
+        <div class="subj-block-meta">High 5 to 6 is a structure fix, not a knowledge fix</div>
+      </div>
+      <div class="badge-row"><span class="badge badge-hl">HL</span><span class="badge badge-p1">Priority 3</span></div>
+    </div>
+    <div class="subj-block-body">
+      <div class="topics-grid">
+        <div class="topic-tile">
+          <div class="priority-label p-must">Must Know</div>
+          <div class="topic-name">Paper 1: Unseen Analysis</div>
+          <div class="topic-note">Read guiding question first. Annotate 10 min. Intro (text type → purpose → audience → tone) → 3 body paras (technique → quote → effect) → conclusion.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-must">Must Know</div>
+          <div class="topic-name">Literary Devices — Precisely</div>
+          <div class="topic-note">Not "metaphor" — say "extended metaphor of decay that degrades X." Always link to effect on the reader. 3–4 named devices per paragraph minimum.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-must">Must Know</div>
+          <div class="topic-name">Text Types & Conventions</div>
+          <div class="topic-note">Advertisement, speech, opinion piece, literary extract, news article, diary — identifying the text type accurately is the first mark on every Paper 1.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-high">High Value</div>
+          <div class="topic-name">Thesis Writing</div>
+          <div class="topic-note">One sentence answering the guiding question and naming the techniques you'll discuss. Examiners read the intro first — it sets every expectation.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-high">High Value</div>
+          <div class="topic-name">Register, Tone & Diction</div>
+          <div class="topic-note">Formal vs informal, emotive vs objective, colloquial vs Latinate. Always link language register back to the author's purpose and intended audience.</div>
+        </div>
+        <div class="topic-tile">
+          <div class="priority-label p-low">Know Basics</div>
+          <div class="topic-name">HL: Paper 2 Comparative</div>
+          <div class="topic-note">Compare two texts using a thematic or stylistic lens. Don't summarise — analyse and compare. One clear argument that holds across both texts.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESS + FRENCH side by side -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <div class="subject-block" style="margin-bottom:0">
+      <div class="subj-block-header">
+        <div class="subj-color-stripe" style="background:#4a9cc4"></div>
+        <div>
+          <div class="subj-block-title">ESS</div>
+          <div class="subj-block-meta">Holding a 6 — 1 session/week max</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-sl">SL</span></div>
+      </div>
+      <div class="subj-block-body">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="topic-tile"><div class="priority-label p-must">Must Know</div><div class="topic-name">Systems Thinking</div><div class="topic-note">Inputs, outputs, flows, storages, feedbacks (positive & negative). Draw a systems diagram for any environmental process.</div></div>
+          <div class="topic-tile"><div class="priority-label p-must">Must Know</div><div class="topic-name">Biodiversity & Ecosystems</div><div class="topic-note">Biodiversity loss causes, IUCN categories, conservation strategies. Know specific examples — abstract answers lose marks.</div></div>
+          <div class="topic-tile"><div class="priority-label p-high">High Value</div><div class="topic-name">Climate Change</div><div class="topic-note">Greenhouse effect, enhanced greenhouse effect, mitigation vs adaptation. Always use named case studies.</div></div>
+          <div class="topic-tile"><div class="priority-label p-high">High Value</div><div class="topic-name">Pollution & Resources</div><div class="topic-note">Eutrophication full chain, water scarcity, renewable vs non-renewable, energy trade-offs.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subject-block" style="margin-bottom:0">
+      <div class="subj-block-header">
+        <div class="subj-color-stripe" style="background:#b5451b"></div>
+        <div>
+          <div class="subj-block-title">French B</div>
+          <div class="subj-block-meta">4 → 5 in 4 weeks is very achievable</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-sl">SL</span></div>
+      </div>
+      <div class="subj-block-body">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="topic-tile"><div class="priority-label p-must">Must Know</div><div class="topic-name">Text Type Formats</div><div class="topic-note">Formal letter, article, blog, speech, report. Each has required conventions — marks are literally lost for the wrong format.</div></div>
+          <div class="topic-tile"><div class="priority-label p-must">Must Know</div><div class="topic-name">Register Awareness</div><div class="topic-note">Formal (vous, no contractions) vs informal (tu, familiar expressions). Wrong register drops criterion B marks immediately.</div></div>
+          <div class="topic-tile"><div class="priority-label p-high">High Value</div><div class="topic-name">IB Thematic Vocabulary</div><div class="topic-note">10–15 words per theme: l'environnement, la technologie, la mondialisation, la santé. These themes appear every session.</div></div>
+          <div class="topic-tile"><div class="priority-label p-high">High Value</div><div class="topic-name">Connective Phrases</div><div class="topic-note">Cependant, en revanche, en outre, par conséquent, en définitive. These alone can move you from a 4 to a 5.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</section>
+
+<div class="ornamental-divider">✦ ✦ ✦</div>
+
+<!-- ESSAYS -->
+<section id="essays">
+<div class="page-wrap">
+<div class="section-wrap">
+
+  <div class="section-header">
+    <div>
+      <div class="section-num">03</div>
+      <div class="section-title-lg">Essay<br><em>Formulas</em></div>
+    </div>
+    <div class="section-note">Learn these cold. Apply them every time. Don't improvise essay structure under exam pressure — structure is the one thing you can control.</div>
+  </div>
+
+  <div class="essay-grid">
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-accent" style="background:#c8962a"></div>
+        <div class="essay-title">Business — Evaluative Essay</div>
+      </div>
+      <div class="essay-body">
+        <div class="formula-step"><div class="step-num" style="color:#c8962a">1</div><div class="step-body"><strong>Define</strong> the key concept in your own words — 2 sentences maximum</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#c8962a">2</div><div class="step-body"><strong>Apply</strong> the theory to the specific business context given in the question</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#c8962a">3</div><div class="step-body"><strong>Argue</strong> one side with evidence and business theory</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#c8962a">4</div><div class="step-body"><strong>Counter</strong> with "However, it could be argued that..." — examiners need both sides</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#c8962a">5</div><div class="step-body"><strong>Conclude:</strong> "Overall, [position] because [reason linked to business context]"</div></div>
+      </div>
+    </div>
+
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-accent" style="background:#6b7c5a"></div>
+        <div class="essay-title">Economics — Paper 1 Essay</div>
+      </div>
+      <div class="essay-body">
+        <div class="formula-step"><div class="step-num" style="color:#6b7c5a">1</div><div class="step-body"><strong>Define</strong> all key economic terms in the question</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#6b7c5a">2</div><div class="step-body"><strong>Draw diagram</strong> — label all axes, curves, equilibrium. Do this for every answer, always.</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#6b7c5a">3</div><div class="step-body"><strong>Explain</strong> the economic theory using your diagram as evidence</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#6b7c5a">4</div><div class="step-body"><strong>Counter:</strong> limitations, ceteris paribus, alternative economic schools (Keynesian vs monetarist)</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#6b7c5a">5</div><div class="step-body"><strong>Conclude:</strong> "The extent to which X depends on Y..." — examiners love this exact phrase</div></div>
+      </div>
+    </div>
+
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-accent" style="background:#8a6fbc"></div>
+        <div class="essay-title">English — Paper 1 Analysis</div>
+      </div>
+      <div class="essay-body">
+        <div class="formula-step"><div class="step-num" style="color:#8a6fbc">1</div><div class="step-body"><strong>Read guiding question first</strong> — let it direct every annotation you make</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#8a6fbc">2</div><div class="step-body"><strong>Intro:</strong> text type → purpose → intended audience → dominant tone (4 things, 4 sentences)</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#8a6fbc">3</div><div class="step-body"><strong>Body para formula:</strong> technique → short quote → effect on reader. Repeat 3×.</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#8a6fbc">4</div><div class="step-body"><strong>Never</strong> just identify a device — always "this creates [effect] because [reason]"</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#8a6fbc">5</div><div class="step-body"><strong>Conclusion:</strong> return to guiding question, synthesise your main argument in 2 sentences</div></div>
+      </div>
+    </div>
+
+    <div class="essay-card">
+      <div class="essay-card-head">
+        <div class="essay-accent" style="background:#b5451b"></div>
+        <div class="essay-title">French B — Written Production</div>
+      </div>
+      <div class="essay-body">
+        <div class="formula-step"><div class="step-num" style="color:#b5451b">1</div><div class="step-body"><strong>Identify text type</strong> and its required format before writing a single word</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#b5451b">2</div><div class="step-body"><strong>Set register</strong> — formal or informal? Commit from line one. Never mix.</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#b5451b">3</div><div class="step-body"><strong>Structure:</strong> intro (purpose) → 2–3 developed points with connectives → conclusion</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#b5451b">4</div><div class="step-body"><strong>Connectives</strong> between every paragraph: Cependant, En outre, Par conséquent</div></div>
+        <div class="formula-step"><div class="step-num" style="color:#b5451b">5</div><div class="step-body"><strong>Correct closing</strong> for text type: "Veuillez agréer…" (letter), "À bientôt" (blog)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:24px">
+    <div class="callout-mark">✦</div>
+    <div><strong>The one word worth marks in every subject: "However."</strong> It signals to the examiner that you can think critically and present multiple sides. In Business, Economics, and English — every high-scoring response has a contrast moment. If your essay doesn't contain "however" or "on the other hand," you are almost certainly missing evaluation marks.</div>
+  </div>
+
+</div>
+</div>
+</section>
+
+<div class="ornamental-divider">✦ ✦ ✦</div>
+
+<!-- CHEAT SHEET -->
+<div class="cheat-section" id="cheatsheet">
+<div class="page-wrap">
+<div class="section-wrap">
+
+  <div style="text-align:center; margin-bottom:48px;">
+    <span class="overline">Quick reference</span>
+    <div class="display-heading" style="color:var(--cream)">The Cheat Sheet.</div>
+    <p class="body-serif">Formulas, ratios, diagrams, theories — everything you need to recall fast in the exam room.</p>
+  </div>
+
+  <div class="cheat-grid">
+
+    <div class="cheat-card">
+      <div class="cheat-card-head"><div class="cheat-dot" style="background:#6b7c5a"></div><div class="cheat-title">Economics — Key Diagrams Checklist</div></div>
+      <div class="cheat-row"><div class="cheat-term">Supply & demand</div><div class="cheat-def">P on y-axis, Q on x-axis. Equilibrium at intersection. Non-price factors shift curves, price changes move along them.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Negative externality</div><div class="cheat-def">MPC below MSC. Overproduction at Qmarket vs Qoptimal. Welfare loss triangle between MSC and MPC. Tax to internalise.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Positive externality</div><div class="cheat-def">MPB below MSB. Underproduction. Welfare loss. Subsidy to correct.</div></div>
+      <div class="cheat-row"><div class="cheat-term">AD/AS (Keynesian)</div><div class="cheat-def">Price level on y-axis, Real GDP on x-axis. AS has 3 sections: horizontal, upward-sloping, vertical.</div></div>
+      <div class="cheat-row"><div class="cheat-term">PPC</div><div class="cheat-def">Shows opportunity cost, productive efficiency (on curve), inefficiency (inside), growth (outward shift).</div></div>
+      <div class="cheat-row"><div class="cheat-term">Monopoly</div><div class="cheat-def">MR below AR (= demand). Profit max where MR=MC. Supernormal profit = rectangle between AR and ATC above output.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Tariff diagram</div><div class="cheat-def">Show: world price, domestic price with tariff, consumer surplus lost, producer surplus gained, government revenue, deadweight loss triangles.</div></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-card-head"><div class="cheat-dot" style="background:#6b7c5a"></div><div class="cheat-title">Economics — Formulas</div></div>
+      <div class="cheat-row"><div class="cheat-term">PED = %ΔQd ÷ %ΔP</div><div class="cheat-def">|PED| &gt; 1 = elastic (luxury). |PED| &lt; 1 = inelastic (necessity). Perfectly inelastic = vertical demand curve.</div></div>
+      <div class="cheat-row"><div class="cheat-term">PES = %ΔQs ÷ %ΔP</div><div class="cheat-def">PES &gt; 1 = elastic supply. Determined by production period, spare capacity, stock levels, mobility of factors.</div></div>
+      <div class="cheat-row"><div class="cheat-term">YED = %ΔQd ÷ %ΔIncome</div><div class="cheat-def">YED &gt; 0 = normal good. YED &lt; 0 = inferior good. YED &gt; 1 = luxury good (income elastic).</div></div>
+      <div class="cheat-row"><div class="cheat-term">Multiplier = 1 ÷ (1 − MPC)</div><div class="cheat-def">Also = 1 ÷ MPS. Shows how initial injection creates larger final change in national income.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Inflation rate = CPI change ÷ base × 100</div><div class="cheat-def">Demand-pull: AD &gt; AS at full employment. Cost-push: SRAS shifts left. Know the difference for policy response.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Real GDP = Nominal ÷ Price level × 100</div><div class="cheat-def">Always use real GDP for cross-period comparisons — removes inflation effect from comparison.</div></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-card-head"><div class="cheat-dot" style="background:#c8962a"></div><div class="cheat-title">Business — Theories at a Glance</div></div>
+      <div class="cheat-row"><div class="cheat-term">Maslow's hierarchy</div><div class="cheat-def">Physiological → Safety → Social → Esteem → Self-actualisation. Lower needs must be satisfied first. Criticism: too rigid, cultural variation, hard to measure.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Herzberg's two-factor</div><div class="cheat-def">Hygiene factors (salary, conditions, security) — prevent dissatisfaction but don't motivate. Motivators (achievement, recognition, responsibility) — actually motivate.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Taylor (scientific mgmt)</div><div class="cheat-def">Workers motivated purely by money. Time-and-motion studies. Piece rate pay. Criticism: dehumanising, ignores intrinsic motivation, context-dependent.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Ansoff matrix</div><div class="cheat-def">Market penetration (existing/existing, lowest risk) → Market development → Product development → Diversification (new/new, highest risk).</div></div>
+      <div class="cheat-row"><div class="cheat-term">Boston Matrix</div><div class="cheat-def">Stars (high share, high growth), Cash Cows (high share, low growth), Question Marks (low share, high growth), Dogs (low/low).</div></div>
+      <div class="cheat-row"><div class="cheat-term">Porter's generic strategies</div><div class="cheat-def">Cost leadership, differentiation, focus (cost or differentiation). HL: evaluate which fits the business context — don't just name them.</div></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-card-head"><div class="cheat-dot" style="background:#c8962a"></div><div class="cheat-title">Business — Financial Ratios</div></div>
+      <div class="cheat-row"><div class="cheat-term">Gross profit margin = GP ÷ Revenue × 100</div><div class="cheat-def">Profit before operating costs. Higher is better. Compare to industry average and prior years.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Net profit margin = NP ÷ Revenue × 100</div><div class="cheat-def">Profit after all costs. Low NP with high GP = high operating costs. Evaluate root cause.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Current ratio = CA ÷ CL</div><div class="cheat-def">Ideal: 1.5–2. Below 1 = liquidity problem (can't pay short-term debts). Above 2 = inefficient use of assets.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Acid test = (CA − Inventories) ÷ CL</div><div class="cheat-def">Stricter — removes stock (illiquid). Ideal ≥ 1. If below 1, company may struggle with immediate obligations.</div></div>
+      <div class="cheat-row"><div class="cheat-term">ROE = Net profit ÷ Equity × 100</div><div class="cheat-def">Return for shareholders. Compare year-on-year and to competitors — context matters for interpretation.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Payback period = Investment ÷ Annual NCF</div><div class="cheat-def">Shorter = less risky. Simple but ignores time value of money and cash flows after payback.</div></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-card-head"><div class="cheat-dot" style="background:#4a9cc4"></div><div class="cheat-title">ESS — Key Definitions</div></div>
+      <div class="cheat-row"><div class="cheat-term">Positive feedback</div><div class="cheat-def">Output amplifies the process. Destabilises systems (e.g. melting ice → less albedo → more warming → more melting).</div></div>
+      <div class="cheat-row"><div class="cheat-term">Negative feedback</div><div class="cheat-def">Output reduces the process, maintains equilibrium. Stabilises systems (e.g. predator-prey population balance).</div></div>
+      <div class="cheat-row"><div class="cheat-term">Biodiversity</div><div class="cheat-def">Three levels: genetic diversity (within species), species diversity, ecosystem diversity. Loss threatens stability.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Eutrophication</div><div class="cheat-def">Excess nutrients → algal bloom → blocks light → decomposition → oxygen depletion → aquatic organism death. Know the full chain.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Carbon sink vs source</div><div class="cheat-def">Sink: absorbs more CO₂ than it releases (intact forests, oceans). Source: releases more than it absorbs (deforested land, burning fossil fuels).</div></div>
+      <div class="cheat-row"><div class="cheat-term">Mitigation vs adaptation</div><div class="cheat-def">Mitigation = reduce causes of climate change. Adaptation = adjust to effects. Both needed — don't conflate them in answers.</div></div>
+    </div>
+
+    <div class="cheat-card">
+      <div class="cheat-card-head"><div class="cheat-dot" style="background:#8a6fbc"></div><div class="cheat-title">English — Literary Devices (Be Precise)</div></div>
+      <div class="cheat-row"><div class="cheat-term">Metaphor / Extended metaphor</div><div class="cheat-def">Name what it compares and what effect. "The extended metaphor of war frames the debate as violent" — not just "a metaphor is used."</div></div>
+      <div class="cheat-row"><div class="cheat-term">Imperative verbs</div><div class="cheat-def">Commands ("Buy now", "Act") — create urgency, position reader as active agent. Common in persuasive and advertising texts.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Anaphora</div><div class="cheat-def">Repetition at the start of clauses — creates rhythm, emphasis, emotional momentum. Effect depends on what is repeated.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Juxtaposition</div><div class="cheat-def">Placing contrasting ideas side by side. Juxtaposition is the technique; contrast is the effect. Say both in your analysis.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Polysyndeton</div><div class="cheat-def">Many conjunctions ("and…and…and…") — slows pace, creates accumulation or overwhelming effect.</div></div>
+      <div class="cheat-row"><div class="cheat-term">Asyndeton</div><div class="cheat-def">No conjunctions between clauses — creates rapid pace, urgency, breathlessness. Opposite effect to polysyndeton.</div></div>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+
+<div class="ornamental-divider">✦ ✦ ✦</div>
+
+<!-- FRENCH B -->
+<section id="french">
+<div class="fr-section">
+<div class="page-wrap">
+<div class="section-wrap">
+
+  <div class="section-header">
+    <div>
+      <div class="section-num">04</div>
+      <div class="section-title-lg">French B<br><em>Connectives</em></div>
+    </div>
+    <div class="section-note">These 20 phrases used correctly are worth more marks than any grammar rule. Rotate through them — don't repeat the same one twice in a response.</div>
+  </div>
+
+  <div class="fr-grid">
+    <div class="fr-tile" style="border-top-color:#6b7c5a"><div class="fr-cat" style="color:#6b7c5a">Contrast</div><div class="fr-phrase">Cependant</div><div class="fr-meaning">However</div><div class="fr-example">Les réseaux sociaux sont utiles. Cependant, ils peuvent être dangereux pour les jeunes.</div></div>
+    <div class="fr-tile" style="border-top-color:#6b7c5a"><div class="fr-cat" style="color:#6b7c5a">Contrast</div><div class="fr-phrase">En revanche</div><div class="fr-meaning">On the other hand</div><div class="fr-example">Les voitures électriques sont écologiques. En revanche, elles restent chères.</div></div>
+    <div class="fr-tile" style="border-top-color:#6b7c5a"><div class="fr-cat" style="color:#6b7c5a">Contrast</div><div class="fr-phrase">Néanmoins</div><div class="fr-meaning">Nevertheless (formal)</div><div class="fr-example">La situation est difficile. Néanmoins, nous devons agir.</div></div>
+    <div class="fr-tile" style="border-top-color:#6b7c5a"><div class="fr-cat" style="color:#6b7c5a">Contrast</div><div class="fr-phrase">Pourtant</div><div class="fr-meaning">Yet / and yet</div><div class="fr-example">Il connaissait les risques. Pourtant, il a continué.</div></div>
+    <div class="fr-tile" style="border-top-color:#6b7c5a"><div class="fr-cat" style="color:#6b7c5a">Contrast</div><div class="fr-phrase">Toutefois</div><div class="fr-meaning">However (very formal)</div><div class="fr-example">Ce projet est ambitieux. Toutefois, il est réalisable avec du soutien.</div></div>
+    <div class="fr-tile" style="border-top-color:#c8962a"><div class="fr-cat" style="color:#c8962a">Addition</div><div class="fr-phrase">De plus</div><div class="fr-meaning">Furthermore / moreover</div><div class="fr-example">Ce régime est mauvais pour la santé. De plus, il nuit à l'environnement.</div></div>
+    <div class="fr-tile" style="border-top-color:#c8962a"><div class="fr-cat" style="color:#c8962a">Addition</div><div class="fr-phrase">En outre</div><div class="fr-meaning">Moreover (formal)</div><div class="fr-example">Le chômage a augmenté. En outre, les inégalités se sont creusées.</div></div>
+    <div class="fr-tile" style="border-top-color:#c8962a"><div class="fr-cat" style="color:#c8962a">Addition</div><div class="fr-phrase">Par ailleurs</div><div class="fr-meaning">Furthermore / besides</div><div class="fr-example">Il travaille dur. Par ailleurs, il fait du bénévolat le week-end.</div></div>
+    <div class="fr-tile" style="border-top-color:#c8962a"><div class="fr-cat" style="color:#c8962a">Addition</div><div class="fr-phrase">Qui plus est</div><div class="fr-meaning">What is more</div><div class="fr-example">Ce produit est efficace et, qui plus est, très abordable pour tous.</div></div>
+    <div class="fr-tile" style="border-top-color:#c8962a"><div class="fr-cat" style="color:#c8962a">Addition</div><div class="fr-phrase">Également</div><div class="fr-meaning">Also / equally</div><div class="fr-example">La pollution de l'air est préoccupante. Elle affecte également les océans.</div></div>
+    <div class="fr-tile" style="border-top-color:#b5451b"><div class="fr-cat" style="color:#b5451b">Cause & effect</div><div class="fr-phrase">Par conséquent</div><div class="fr-meaning">As a result / therefore</div><div class="fr-example">Les températures augmentent. Par conséquent, la glace fond plus rapidement.</div></div>
+    <div class="fr-tile" style="border-top-color:#b5451b"><div class="fr-cat" style="color:#b5451b">Cause & effect</div><div class="fr-phrase">C'est pourquoi</div><div class="fr-meaning">That is why</div><div class="fr-example">Les jeunes manquent d'information. C'est pourquoi l'éducation est essentielle.</div></div>
+    <div class="fr-tile" style="border-top-color:#b5451b"><div class="fr-cat" style="color:#b5451b">Cause & effect</div><div class="fr-phrase">Ainsi</div><div class="fr-meaning">Thus / in this way</div><div class="fr-example">Le gouvernement a investi. Ainsi, la situation s'est considérablement améliorée.</div></div>
+    <div class="fr-tile" style="border-top-color:#b5451b"><div class="fr-cat" style="color:#b5451b">Cause & effect</div><div class="fr-phrase">En raison de</div><div class="fr-meaning">Due to / because of</div><div class="fr-example">En raison de la crise économique, beaucoup de familles souffrent.</div></div>
+    <div class="fr-tile" style="border-top-color:#b5451b"><div class="fr-cat" style="color:#b5451b">Cause & effect</div><div class="fr-phrase">Il en résulte que</div><div class="fr-meaning">It follows that</div><div class="fr-example">La demande a chuté. Il en résulte que les prix ont fortement baissé.</div></div>
+    <div class="fr-tile" style="border-top-color:#8a6fbc"><div class="fr-cat" style="color:#8a6fbc">Conclusion</div><div class="fr-phrase">En conclusion</div><div class="fr-meaning">In conclusion</div><div class="fr-example">En conclusion, il est urgent de prendre des mesures concrètes et immédiates.</div></div>
+    <div class="fr-tile" style="border-top-color:#8a6fbc"><div class="fr-cat" style="color:#8a6fbc">Conclusion</div><div class="fr-phrase">En définitive</div><div class="fr-meaning">Ultimately / all in all</div><div class="fr-example">En définitive, c'est l'éducation qui peut véritablement changer les choses.</div></div>
+    <div class="fr-tile" style="border-top-color:#8a6fbc"><div class="fr-cat" style="color:#8a6fbc">Conclusion</div><div class="fr-phrase">Dans l'ensemble</div><div class="fr-meaning">On the whole</div><div class="fr-example">Dans l'ensemble, les résultats de cette politique sont plutôt positifs.</div></div>
+    <div class="fr-tile" style="border-top-color:#4a9cc4"><div class="fr-cat" style="color:#4a9cc4">Illustration</div><div class="fr-phrase">Par exemple</div><div class="fr-meaning">For example</div><div class="fr-example">Certains pays ont réussi. Par exemple, la Finlande a réformé son système scolaire.</div></div>
+    <div class="fr-tile" style="border-top-color:#4a9cc4"><div class="fr-cat" style="color:#4a9cc4">Illustration</div><div class="fr-phrase">En effet</div><div class="fr-meaning">Indeed / in fact</div><div class="fr-example">Le problème est grave. En effet, des milliers de personnes en souffrent chaque jour.</div></div>
+  </div>
+
+  <div class="format-grid">
+    <div class="format-card">
+      <div class="format-name">Formal Letter</div>
+      <div class="format-steps">
+        <span>Lieu, le [date]</span>
+        Objet : [subject line]<br>
+        Madame/Monsieur,<br>
+        [body paragraphs]<br>
+        <span>Veuillez agréer, Madame/Monsieur, l'expression de mes salutations distinguées.</span>
+      </div>
+    </div>
+    <div class="format-card">
+      <div class="format-name">Article / Blog</div>
+      <div class="format-steps">
+        <span>Titre accrocheur</span>
+        Chapeau (intro paragraph)<br>
+        Developed paragraphs<br>
+        Conclusion<br>
+        <span>Article = formal register. Blog = informal (tu), anecdotes, direct address.</span>
+      </div>
+    </div>
+    <div class="format-card">
+      <div class="format-name">Speech</div>
+      <div class="format-steps">
+        <span>Mesdames et messieurs,</span>
+        Intro (hook/rhetorical question)<br>
+        3 developed points<br>
+        Conclusion<br>
+        <span>Merci de votre attention.</span>
+      </div>
+    </div>
+    <div class="format-card">
+      <div class="format-name">Report</div>
+      <div class="format-steps">
+        <span>Introduction</span>
+        Analyse de la situation<br>
+        Recommandations<br>
+        <span>Conclusion — formal throughout, no personal pronouns, impersonal constructions.</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+</section>
+
+<div class="ornamental-divider">✦ ✦ ✦</div>
+
+<!-- EXAM TIPS -->
+<section id="tips">
+<div class="page-wrap">
+<div class="section-wrap tips-section" style="padding-top:0">
+
+  <div class="section-header">
+    <div>
+      <div class="section-num">05</div>
+      <div class="section-title-lg">Exam Tips<br><em>That Matter</em></div>
+    </div>
+    <div class="section-note">Not generic advice. These are the specific things that separate a 5 from a 6 in IB exams.</div>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card"><div class="tip-num">01</div><div class="tip-title">Read the command term first</div><div class="tip-body">"Explain" ≠ "Evaluate" ≠ "Discuss." IB uses precise command terms. "Evaluate" always needs a judgment. Losing marks because you wrote the wrong type of answer is the most avoidable mistake.</div></div>
+    <div class="tip-card"><div class="tip-num">02</div><div class="tip-title">Draw a diagram for every Econ answer</div><div class="tip-body">Even short 4-mark answers. A labelled diagram signals understanding immediately and earns marks even if your written explanation is incomplete. Never skip it.</div></div>
+    <div class="tip-card"><div class="tip-num">03</div><div class="tip-title">The "however" rule</div><div class="tip-body">Any Business or Economics answer worth more than 4 marks needs evaluation. If your answer doesn't contain "however" or "on the other hand," you're probably missing evaluation marks.</div></div>
+    <div class="tip-card"><div class="tip-num">04</div><div class="tip-title">Don't summarise the case study</div><div class="tip-body">In Business Paper 1, students waste time describing what the case study says. Marks are for applying business theory to the case study — not describing it back to the examiner.</div></div>
+    <div class="tip-card"><div class="tip-num">05</div><div class="tip-title">Time management per paper</div><div class="tip-body">IB papers give roughly 1 minute per mark. A 10-mark question = 10 minutes. Stick to it — a blank question is always worse than an imperfect one written in the time you had left.</div></div>
+    <div class="tip-card"><div class="tip-num">06</div><div class="tip-title">Past papers beat notes every time</div><div class="tip-body">Reading notes feels productive but isn't. 45 minutes attempting a past paper question + 15 minutes with the mark scheme is worth 3 hours of passive reading.</div></div>
+    <div class="tip-card"><div class="tip-num">07</div><div class="tip-title">English: technique → effect always</div><div class="tip-body">"The writer uses a metaphor" = 0 marks. "The metaphor of machinery dehumanises the workers, positioning the reader to feel sympathy" = full marks. Always go one step further.</div></div>
+    <div class="tip-card"><div class="tip-num">08</div><div class="tip-title">Sleep before the exam</div><div class="tip-body">Not negotiable. Sleep is when your brain consolidates memory. An all-nighter the day before actively makes you perform worse. The revision you did this week matters more if you sleep.</div></div>
+    <div class="tip-card"><div class="tip-num">09</div><div class="tip-title">Answer every question</div><div class="tip-body">Blank answers score zero. A partial, uncertain answer can still earn 1–2 marks. In IB, those marks can move you across a grade boundary. Always write something.</div></div>
+  </div>
+
+</div>
+</div>
+</section>
+
+<footer>
+  Built for your 4-week push &nbsp;✦&nbsp; <strong>Business HL · Economics HL · English Lang Lit A HL · ESS SL · French B SL</strong><br>
+  <span style="display:block; margin-top:8px; font-style:italic">"You came 2 months late and you're already making a plan. That's not failing — that's fighting."</span>
+</footer>
+
+<script>
+function showWeek(n) {
+  document.querySelectorAll('.week-panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.wtab').forEach(t => t.classList.remove('on'));
+  document.getElementById('w'+n).classList.add('on');
+  document.querySelectorAll('.wtab')[n-1].classList.add('on');
+}
+
+// Nav active state on scroll
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('section[id], div[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+});
+
+// Subtle fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.subject-block, .essay-card, .tip-card, .cheat-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
